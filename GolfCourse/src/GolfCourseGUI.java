@@ -3,8 +3,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.util.Collections;
+
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
+
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 /**
@@ -24,7 +23,7 @@ import javax.swing.JTextField;
  * @author Tyler Maschoff
  * CIS152 Final Project
  */
-import javax.swing.table.DefaultTableModel;
+
 public class GolfCourseGUI extends JFrame{
 	//JFrame Text box
 	JTextArea  golfCourseTextArea = new JTextArea();
@@ -71,6 +70,7 @@ public class GolfCourseGUI extends JFrame{
 	List<GolfCourse> golfCourseLinkedList = new LinkedList<GolfCourse>();
 	
 	public GolfCourseGUI() {
+		//Create JPanels
 		JPanel panel1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JPanel panel2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JPanel panel3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -95,6 +95,7 @@ public class GolfCourseGUI extends JFrame{
 		//panel1.add(choicesButton);
 		//panel1.add(choicesTextField);
 		
+		//Add labels and textboxes to panels
 		panel2.add(courseLabel);
 		panel2.add(courseTextField);
 		panel2.add(cityLabel);
@@ -137,20 +138,29 @@ public class GolfCourseGUI extends JFrame{
 	private void choicesSelected() {
 		choicesTextField.setText("You Selected: " +cb.getSelectedItem());
 	}
-	
+	//Exit Program
 	private void exitOut() {
 		System.exit(0);
 	}
+	/**
+	 * Sort List by State Name
+	 */
 	private void sortGolfCourseByState() {
 		golfCourseLinkedList.sort(Comparator.comparing(GolfCourse::getState));
 		displayAll();
 	}
-
+	
+	/*
+	 * Sort By best scores
+	 */
 	private void sortGolfCourse() {
 		golfCourseLinkedList.sort(Comparator.comparing(GolfCourse::getUnderPar));
 		displayAll();
 	}
-
+	
+	/*
+	 * Delete an entry
+	 */
 	private void deleteGolfCourse() {
 		//check if golfCourse is already added
 		if(courseInLinkedList(courseTextField.getText()) == true) {
@@ -174,6 +184,9 @@ public class GolfCourseGUI extends JFrame{
 			}
 	}
 	
+	/*
+	 * Display the list 
+	 */
 	private void displayAll() {
 		golfCourseTextArea.setText("");
 		for(GolfCourse course : golfCourseLinkedList) {
@@ -190,7 +203,10 @@ public class GolfCourseGUI extends JFrame{
 		}
 		return isInList;
 	}
-	
+	/**
+	 * Add Golf course used for the add Button.
+	 * Adds users input to the list
+	 */
 	private void addGolfCourse() {
 		//check if golfCourse is already added
 		String parS = parTextField.getText();
