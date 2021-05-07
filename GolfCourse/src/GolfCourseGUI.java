@@ -182,6 +182,7 @@ public class GolfCourseGUI extends JFrame{
 			parTextField.setText("");
 			scoreTextField.setText("");
 			}
+		displayAll();
 	}
 	
 	/*
